@@ -28,12 +28,52 @@ window.config(bg='#E6DDC4')
 window.title('LAN Manager')
 window.iconbitmap('favicon.png')
 
+
+
 # make the virtual board
 
-virtual_frame = LabelFrame(window, text="This is the virtual board")
+virtual_frame = LabelFrame(window, width=800, text="This is the virtual board", padx=10, pady=10)
 virtual_frame.grid(row=0, column=0, columnspan=5, padx=5, pady=5)
-virtual_canvas = Canvas(virtual_frame, width=600, height=300, bg='#F3F0D7')
+virtual_canvas = Canvas(virtual_frame, width=800, height=400, bg='#F3F0D7')
 virtual_canvas.pack(padx=5, pady=5)
+core_label = Label(virtual_canvas, text='Core')
+core_label.grid(row=1, column=0,padx=10, pady=20)
+distr_label = Label(virtual_canvas, text='Distribution')
+distr_label.grid(row=2, column=0,padx=10, pady=20)
+access_label = Label(virtual_canvas, text="Access")
+access_label.grid(row=3, column=0,padx=10, pady=20)
+router_img3 = ImageTk.PhotoImage(Image.open('router.png').resize((70, 70)))
+router_label3 = Label(virtual_canvas, image=router_img3)
+router_label3.grid(row=0, column=2,padx=10, pady=20)
+router_label4 = Label(virtual_canvas, image=router_img3)
+router_label4.grid(row=0, column=3,padx=10, pady=20)
+switch_img2 = ImageTk.PhotoImage(Image.open('switch.png').resize((50, 50)))
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=1, column=2,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=1, column=3,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=2, column=2,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=2, column=3,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=3, column=1,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=3, column=2,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=3, column=3,padx=10, pady=20)
+switch_label2 = Label(virtual_canvas, image=switch_img2)
+switch_label2.grid(row=3, column=4,padx=10, pady=20)
+router_img2 = ImageTk.PhotoImage(Image.open('comp.png').resize((70, 70)))
+comp_label2 = Label(virtual_canvas, image=router_img2)
+comp_label2.grid(row=4, column=1,padx=10, pady=20)
+comp_label2 = Label(virtual_canvas, image=router_img2)
+comp_label2.grid(row=4, column=2,padx=10, pady=20)
+comp_label2 = Label(virtual_canvas, image=router_img2)
+comp_label2.grid(row=4, column=3,padx=10, pady=20)
+comp_label2 = Label(virtual_canvas, image=router_img2)
+comp_label2.grid(row=4, column=4,padx=10, pady=20)
+
 
 # make the icons bar
 
@@ -50,9 +90,6 @@ switch_label.pack()
 comp_img = ImageTk.PhotoImage(Image.open('comp.png').resize((50, 50)))
 comp_label = Label(icon_canvas, image=comp_img)
 comp_label.pack()
-
-
-
 
 
 # make the protocols bar
