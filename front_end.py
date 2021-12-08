@@ -10,6 +10,12 @@ from PIL import ImageTk, Image
 
 
 is_on = 'False'
+
+core_list = []
+dis_list = []
+access_list = []
+
+
 ### FUNCTION ###
 
 def button_on(vlan):
@@ -22,6 +28,42 @@ def button_on(vlan):
         is_on = 'False'
         vlan.config(bg='white')
         print(is_on)
+
+def router_on(router):
+    '''global btn_router_b
+        global btn_router_a
+        btn_router_a.destroy()
+        btn_router_b = Button(virtual_frame, image=router_img3, command=router_off)
+        btn_router_b.pack(padx=10, pady=20)'''
+
+    router.config(bg="white", width=40, height=40, image=router_img3, command=lambda: router_off(router))
+
+def router_off(router):
+    '''global btn_router_b
+    global btn_router_a
+    btn_router_b.destroy()
+    btn_router_a = Button(virtual_canvas, width=5, height=3, command=router_on)
+    btn_router_a.grid(row=0, column=2, padx=10, pady=20)'''
+
+    router.config(bg='black', command=lambda: router_on(router))
+
+def switch_on(switch):
+
+    switch.config(bg="white", width=40, height=40, image=switch_img2, command=lambda: switch_off(switch))
+
+
+def switch_off(switch):
+
+    switch.config(bg='black', command=lambda: switch_on(switch))
+
+def comp_on(comp):
+
+    comp.config(bg="white", width=40, height=40, image=comp_img2, command=lambda: comp_off(comp))
+
+def comp_off(comp):
+
+    comp.config(bg='black', command=lambda: comp_on(comp))
+
 
 window= Tk()
 window.config(bg='#E6DDC4')
@@ -43,37 +85,42 @@ distr_label.grid(row=2, column=0,padx=10, pady=20)
 access_label = Label(virtual_canvas, text="Access")
 access_label.grid(row=3, column=0,padx=10, pady=20)
 router_img3 = ImageTk.PhotoImage(Image.open('router.png').resize((70, 70)))
-router_label3 = Label(virtual_canvas, image=router_img3)
-router_label3.grid(row=0, column=2,padx=10, pady=20)
-router_label4 = Label(virtual_canvas, image=router_img3)
-router_label4.grid(row=0, column=3,padx=10, pady=20)
+btn_router_a = Button(virtual_canvas,width=5, height=3, command=lambda :router_on(btn_router_a))
+btn_router_a.grid(row=0, column=2,padx=10, pady=20)
+btn_router_b = Button(virtual_canvas, width=5, height=3, command=lambda :router_on(btn_router_b))
+btn_router_b.grid(row=0, column=3, padx=10, pady=20)
 switch_img2 = ImageTk.PhotoImage(Image.open('switch.png').resize((50, 50)))
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=1, column=2,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=1, column=3,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=2, column=2,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=2, column=3,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=3, column=1,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=3, column=2,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=3, column=3,padx=10, pady=20)
-switch_label2 = Label(virtual_canvas, image=switch_img2)
-switch_label2.grid(row=3, column=4,padx=10, pady=20)
-router_img2 = ImageTk.PhotoImage(Image.open('comp.png').resize((70, 70)))
-comp_label2 = Label(virtual_canvas, image=router_img2)
-comp_label2.grid(row=4, column=1,padx=10, pady=20)
-comp_label2 = Label(virtual_canvas, image=router_img2)
-comp_label2.grid(row=4, column=2,padx=10, pady=20)
-comp_label2 = Label(virtual_canvas, image=router_img2)
-comp_label2.grid(row=4, column=3,padx=10, pady=20)
-comp_label2 = Label(virtual_canvas, image=router_img2)
-comp_label2.grid(row=4, column=4,padx=10, pady=20)
+btn_switch_a = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_a))
+btn_switch_a.grid(row=1, column=2,padx=10, pady=20)
+btn_switch_b = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_b))
+btn_switch_b.grid(row=1, column=3,padx=10, pady=20)
+btn_switch_c = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_c))
+btn_switch_c.grid(row=2, column=2,padx=10, pady=20)
+btn_switch_d = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_d))
+btn_switch_d.grid(row=2, column=3,padx=10, pady=20)
 
+btn_switch_e = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_e))
+btn_switch_e.grid(row=3, column=1,padx=10, pady=20)
+
+btn_switch_f = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_f))
+btn_switch_f.grid(row=3, column=2,padx=10, pady=20)
+btn_switch_g = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_g))
+btn_switch_g.grid(row=3, column=3,padx=10, pady=20)
+btn_switch_h = Button(virtual_canvas,width=5, height=3, command=lambda :switch_on(btn_switch_h))
+btn_switch_h.grid(row=3, column=4,padx=10, pady=20)
+
+comp_img2 = ImageTk.PhotoImage(Image.open('comp.png').resize((50, 50)))
+comp_a = Button(virtual_canvas,width=5, height=3, command=lambda :comp_on(comp_a))
+comp_a.grid(row=4, column=1,padx=10, pady=20)
+
+comp_b = Button(virtual_canvas,width=5, height=3, command=lambda :comp_on(comp_b))
+comp_b.grid(row=4, column=2,padx=10, pady=20)
+
+comp_c = Button(virtual_canvas,width=5, height=3, command=lambda :comp_on(comp_c))
+comp_c.grid(row=4, column=3,padx=10, pady=20)
+
+comp_d = Button(virtual_canvas,width=5, height=3, command=lambda :comp_on(comp_d))
+comp_d.grid(row=4, column=4,padx=10, pady=20)
 
 # make the icons bar
 
