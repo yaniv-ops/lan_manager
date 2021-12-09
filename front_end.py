@@ -12,10 +12,11 @@ from back_end import Router
 
 is_on = 'False'
 
+router_list = []
 core_list = []
 dis_list = []
 access_list = []
-
+comp_list = []
 
 ### FUNCTION ###
 
@@ -33,48 +34,56 @@ def button_on(vlan):
 def router_on(router):
 
     router_a = Router()
-    core_list.append(router_a)
+    router_list.append(router_a)
     router.config(bg="black", command=lambda: router_off(router_a, router))
-    print(core_list)
+
 
 def router_off(router_a, router):
 
     router.config(bg='white', command=lambda: router_on(router))
-    core_list.remove(router_a)
-    print(core_list)
+    router_list.remove(router_a)
+
 
 def switch_on(switch):
-
+    print(switch)
     switch_a = Router()
-    dis_list.append(switch_a)
+    if switch == btn_switch_a or switch == btn_switch_b:
+        core_list.append(switch_a)
+        print(f' core_list: {core_list}')
+    elif switch == btn_switch_c or switch == btn_switch_d:
+        dis_list.append(switch_a)
+        print(f' distro list: {dis_list}')
+    elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
+        access_list.append(switch_a)
+        print(f'access_list: {access_list}')
+    else:
+        comp_list.append(switch_a)
+        print(comp_list)
+
+
     switch.config(bg="black", command=lambda: switch_off(switch_a, switch))
-    print(dis_list)
+
 
 def switch_off(switch_a, switch):
 
     switch.config(bg='white', command=lambda: switch_on(switch))
-    dis_list.remove(switch_a)
-    print(dis_list)
+    if switch == btn_switch_a or switch == btn_switch_b:
+        core_list.remove(switch_a)
+        print(f' core_list: {core_list}')
+    elif switch == btn_switch_c or switch == btn_switch_d:
+        dis_list.remove(switch_a)
+        print(f' distro list: {dis_list}')
+    elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
+        access_list.remove(switch_a)
+        print(f'access_list: {access_list}')
+    else:
+        comp_list.remove(switch_a)
 
-def comp_on(comp):
-
-    comp_a = Router()
-    access_list.append(comp_a)
-    comp.config(bg="black", command=lambda: comp_off(comp_a, comp))
-    print(access_list)
-
-def comp_off(comp_a, comp):
-
-    comp.config(bg='white', command=lambda: comp_on(comp))
-    access_list.remove(comp_a)
-    print(access_list)
 
 window= Tk()
 window.config(bg='#E6DDC4')
 window.title('LAN Manager')
 window.iconbitmap('favicon.png')
-
-
 
 # make the virtual board
 
@@ -114,16 +123,16 @@ btn_switch_h = Button(virtual_canvas, width=40, height=40, image=switch_img2, co
 btn_switch_h.grid(row=3, column=4,padx=10, pady=20)
 
 comp_img2 = ImageTk.PhotoImage(Image.open('comp.png').resize((50, 50)))
-comp_a = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :comp_on(comp_a))
+comp_a = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :switch_on(comp_a))
 comp_a.grid(row=4, column=1,padx=10, pady=20)
 
-comp_b = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :comp_on(comp_b))
+comp_b = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :switch_on(comp_b))
 comp_b.grid(row=4, column=2,padx=10, pady=20)
 
-comp_c = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :comp_on(comp_c))
+comp_c = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :switch_on(comp_c))
 comp_c.grid(row=4, column=3,padx=10, pady=20)
 
-comp_d = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :comp_on(comp_d))
+comp_d = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :switch_on(comp_d))
 comp_d.grid(row=4, column=4,padx=10, pady=20)
 
 # make the icons bar
@@ -190,6 +199,7 @@ image_frame.grid(row=1, column=4, padx=5, pady=5)
 desk_img = ImageTk.PhotoImage(Image.open('network.jpg').resize((200, 200)))
 img_label = Label(image_frame, image=desk_img)
 img_label.pack()
+
 window.mainloop()
 
 
