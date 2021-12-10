@@ -11,11 +11,17 @@ class Vlan:
     #     print(subnet_ip_num)
 
     def calculate_bits(self, number_comp):
-        number_twice = 1
-        number_bits = 0
-        while number_comp >> number_twice:
-            number_twice *= 2
+        self.number_comp = number_comp
+        number_twice = 2
+        number_bits = 1
+
+
+
+        while self.number_comp > number_twice:
+
+            number_twice = number_twice *2
             number_bits += 1
+
         return number_bits
 
     def calculate_ip_scope(self, number_bits):
@@ -30,9 +36,12 @@ class Vlan:
 
 
 
+
 subject = Vlan('MAN','10')
-a = subject.calculate_bits(4)
+a = subject.calculate_bits(5)
 subject.calculate_ip_scope(a)
+print(a)
+#subject.calculate_ip_scope(a)
 
     # print(ip_scope)
 
@@ -64,7 +73,7 @@ def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
 
 
 vlan = 7
-a = calculate_interfaces(250, 2, 2, 2)
+#a = calculate_interfaces(250, 2, 2, 2)
 #calculate_vlan(a, vlan)
 
-print(a)
+#print(a)
