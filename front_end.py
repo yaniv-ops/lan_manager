@@ -33,9 +33,11 @@ def button_on(vlan):
 
 def router_on(router):
 
-    router_a = Router()
+    router_a = Router('ospf','hsrp','web', '127.0.0.1')
     router_list.append(router_a)
     router.config(bg="black", command=lambda: router_off(router_a, router))
+    a = router_a.cal_interface(3)
+    print(a)
 
 
 def router_off(router_a, router):
@@ -46,7 +48,7 @@ def router_off(router_a, router):
 
 def switch_on(switch):
     print(switch)
-    switch_a = Router()
+    switch_a = Router('ospf', 'hsrp')
     if switch == btn_switch_a or switch == btn_switch_b:
         core_list.append(switch_a)
         print(f' core_list: {core_list}')
@@ -62,6 +64,7 @@ def switch_on(switch):
 
 
     switch.config(bg="black", command=lambda: switch_off(switch_a, switch))
+
 
 
 def switch_off(switch_a, switch):
