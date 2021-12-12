@@ -25,20 +25,26 @@ class Vlan:
         return number_bits
 
     def calculate_ip_scope(self, number_bits):
-        number_bits = number_bits
-        subnet_3 = (255 - (2 ** number_bits - 1))
-        print(subnet_3)
-        subnet_4 = (255 - (255 - ((2 ** number_bits) - 1)))
-        ip_scope = f"192.168.{subnet_3}.{subnet_4}"
-        subnet = f"255.255.{subnet_3}.{subnet_4}"
+        if number_bits > 8 :
+            octet_4 = 0
+            number_bits = number_bits - 8
+            octet_3 = (255 - (2 ** number_bits - 1))
+        else:
+            octet_3 = 255
+            octet_4 = (255 - (2 ** number_bits - 1))
+        subnet = (255 - (2 ** number_bits - 1))
         print(subnet)
+        mask_subnet = (255 - (255 - ((2 ** number_bits) - 1)))
+        ip_scope = f"192.168.{octet_3}.{octet_4}"
+        mask_scope = f"255.255.{octet_3}.{octet_4}"
+        print(mask_scope)
 
 
 
 
 
 subject = Vlan('MAN','10')
-a = subject.calculate_bits(5)
+a = subject.calculate_bits(50)
 subject.calculate_ip_scope(a)
 print(a)
 #subject.calculate_ip_scope(a)
