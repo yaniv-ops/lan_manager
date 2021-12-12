@@ -1,11 +1,15 @@
 import numpy as np
 import math
-class Vlan:
+
+
+
+class Network:
 
     def __init__(self, name, number):
         self.name = name
         self.number = number
-
+        self.array = np.arange(0,256)
+        print(self.array[0])
     # def calculate_vlan(a, vlan):
     #     subnet_ip_num = a - (a - (vlan + 2))
     #     print(subnet_ip_num)
@@ -43,25 +47,10 @@ class Vlan:
 
 
 
-subject = Vlan('MAN','10')
-a = subject.calculate_bits(50)
+subject = Network('MAN','10')
+a = subject.calculate_bits(10)
 subject.calculate_ip_scope(a)
 print(a)
-#subject.calculate_ip_scope(a)
-
-    # print(ip_scope)
-
-
-    # number_comp = 64
-    # print(math.sqrt(4096))
-    # print(2**12)
-
-
-    # sum_1 = int(2**power_of)
-    #
-    # print(sum_1)
-
-
 
 
 def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
@@ -76,8 +65,34 @@ def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
     total_ip_int = round(float((comp_sum + router_to_core + router_to_router)) * 1.5)
     return total_ip_int
 
+n=0
+n_list=[]
+for _ in range(1280):
+    n_list.append(_)
+
+print(n_list)
+
+z = 1
+a = 0
+y = 0
+
+for _ in range(z):
+
+    text = f"192.168.{a}.{y}"
+
+    for x in range(len(n_list)):
+
+        if y > 255:
+            z += 1
+            a += 1
+            x = 0
+            y = 0
+        text = f"192.168.{a}.{y}"
+        print(text)
+        y += 1
 
 
+print(n_list)
 vlan = 7
 #a = calculate_interfaces(250, 2, 2, 2)
 #calculate_vlan(a, vlan)
