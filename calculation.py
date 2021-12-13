@@ -5,21 +5,19 @@ import math
 
 class Network:
 
-    def __init__(self, name, number):
-        self.name = name
+    def __init__(self, number, vlan=1):
+        self.ip_list = []
+        self.vlan = vlan
         self.number = number
         self.array = np.arange(0,256)
-        print(self.array[0])
-    # def calculate_vlan(a, vlan):
-    #     subnet_ip_num = a - (a - (vlan + 2))
-    #     print(subnet_ip_num)
+        number_of_bits  = self.calculate_bits(number)
+        self.calculate_ip_scope(number_of_bits)
+        self.ip_numbers()
 
     def calculate_bits(self, number_comp):
         self.number_comp = number_comp
         number_twice = 2
         number_bits = 1
-
-
 
         while self.number_comp > number_twice:
 
@@ -42,18 +40,33 @@ class Network:
         ip_scope = f"192.168.{octet_3}.{octet_4}"
         mask_scope = f"255.255.{octet_3}.{octet_4}"
         print(mask_scope)
+        print(self.vlan)
 
+    def ip_numbers(self):
 
+        z = 1
+        a = 0
+        y = 0
 
+        for _ in range(z):
 
+            for x in range(self.number_comp):
 
-subject = Network('MAN','10')
-a = subject.calculate_bits(10)
-subject.calculate_ip_scope(a)
-print(a)
+                if y > 255:
+                    z += 1
+                    a += 1
+                    x = 0
+                    y = 0
 
+                text = f"192.168.{a}.{y}"
+                self.ip_list.append(text)
+                y += 1
+        print(self.ip_list)
+
+subject = Network(9)
 
 def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
+
     router_to_router = 0
     router_to_core = 2
 
@@ -65,36 +78,4 @@ def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
     total_ip_int = round(float((comp_sum + router_to_core + router_to_router)) * 1.5)
     return total_ip_int
 
-n=0
-n_list=[]
-for _ in range(1280):
-    n_list.append(_)
-
-print(n_list)
-
-z = 1
-a = 0
-y = 0
-
-for _ in range(z):
-
-    text = f"192.168.{a}.{y}"
-
-    for x in range(len(n_list)):
-
-        if y > 255:
-            z += 1
-            a += 1
-            x = 0
-            y = 0
-        text = f"192.168.{a}.{y}"
-        print(text)
-        y += 1
-
-
-print(n_list)
 vlan = 7
-#a = calculate_interfaces(250, 2, 2, 2)
-#calculate_vlan(a, vlan)
-
-#print(a)
