@@ -37,7 +37,7 @@ class Network:
         ip_scope = f"192.168.{octet_3}.{octet_4}"
         self.subnet_scope = f"255.255.{octet_3}.{octet_4}"
         self.mask_scope = f"0.0.{255-octet_3}.{255-octet_4}"
-        print(self.vlan)
+
 
 
 
@@ -60,9 +60,10 @@ class Network:
                 text = f"192.168.{a}.{y}"
                 self.ip_list.append(text)
                 y += 1
-        print(self.ip_list)
+
 
     def vlan_go(self, vlan_name, comp_in_vlan):
+        vlans = []
         comp_in_vlan = comp_in_vlan + 3
         number_bits = self.calculate_bits(int(comp_in_vlan))
         self.calculate_ip_scope(number_bits)
@@ -80,11 +81,9 @@ class Network:
 
         for _ in range(0, len(slice_ip_list) +3):
             self.ip_list.pop(0)
-        print(vlan_wrapped)
+        return vlan_wrapped
 
-subject = Network(2)
-subject.vlan_go('manager', 1)
-subject.vlan_go('manager', 1)
+
 
 
 

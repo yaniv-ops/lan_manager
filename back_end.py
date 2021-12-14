@@ -1,12 +1,18 @@
+from calculation import Network
 
-class Router:
+subject = Network(70)
+vlan_a = subject.vlan_go('manager', 1)
+vlan_b = subject.vlan_go('yossi',1)
+vlan_c = subject.vlan_go('ponzi', 1)
+vlan_list = []
+vlan_list.append(vlan_a)
+vlan_list.append(vlan_b)
 
-    def __init__(self, protocol, hsrp, name, manager_address):
-        self.interface = 8
-        self.protocol = protocol
-        self.hsrp = hsrp
-        self.name = name
-        self.manager_address = manager_address
+class Switch:
+
+    def __init__(self, interfaces_num, vlans=vlan_list):
+        self.interface = interfaces_num
+        print(vlans)
 
     def cal_interface(self, int):
         self.interface = self.interface - int
@@ -18,3 +24,4 @@ class Router:
     def deploy_item(self):
         pass
 
+Switch(7)
