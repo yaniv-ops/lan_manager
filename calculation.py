@@ -6,14 +6,14 @@ class Network:
     def __init__(self, number, vlan=1):
         self.ip_list = []
         self.vlan = vlan
-        self.number = number
+        self.number = number + 6
         self.array = np.arange(0,256)
         number_of_bits  = self.calculate_bits(number)
         self.calculate_ip_scope(number_of_bits)
         self.ip_numbers()
 
     def calculate_bits(self, number_comp):
-        self.number_comp = number_comp + 3
+        self.number_comp = number_comp + 6
         number_twice = 2
         number_bits = 1
 
@@ -82,8 +82,13 @@ class Network:
             self.ip_list.pop(0)
         print(vlan_wrapped)
 
-subject = Network(1)
+subject = Network(2)
 subject.vlan_go('manager', 1)
+subject.vlan_go('manager', 1)
+
+
+
+
 
 
 def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
