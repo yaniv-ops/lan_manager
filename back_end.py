@@ -1,6 +1,6 @@
-import numpy as np
 
 class Router:
+
     def __init__(self, protocol, hsrp, name, manager_address):
         self.interface = 8
         self.protocol = protocol
