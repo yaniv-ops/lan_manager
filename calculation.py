@@ -1,10 +1,5 @@
-import random
 
 import numpy as np
-from random import choice
-import math
-
-
 
 class Network:
 
@@ -18,7 +13,7 @@ class Network:
         self.ip_numbers()
 
     def calculate_bits(self, number_comp):
-        self.number_comp = number_comp
+        self.number_comp = number_comp + 3
         number_twice = 2
         number_bits = 1
 
@@ -40,8 +35,8 @@ class Network:
         self.subnet = (255 - (2 ** number_bits - 1))
         self.mask_subnet = (255 - (255 - ((2 ** number_bits) - 1)))
         ip_scope = f"192.168.{octet_3}.{octet_4}"
-        mask_scope = f"255.255.{octet_3}.{octet_4}"
-        print(mask_scope)
+        self.subnet_scope = f"255.255.{octet_3}.{octet_4}"
+        self.mask_scope = f"0.0.{255-octet_3}.{255-octet_4}"
         print(self.vlan)
 
 
@@ -68,31 +63,28 @@ class Network:
         print(self.ip_list)
 
     def vlan_go(self, vlan_name, comp_in_vlan):
-
-        number_bits = self.calculate_bits(comp_in_vlan)
+        comp_in_vlan = comp_in_vlan + 3
+        number_bits = self.calculate_bits(int(comp_in_vlan))
         self.calculate_ip_scope(number_bits)
-        self.network_ip = self.ip_list.pop((0))
-        self.broadcast = self.ip_list.pop(-1)
-        self.gw = self.ip_list.pop(random.randint(0, len(self.ip_list)))
+        slice_ip_list = [value for value in self.ip_list[:(comp_in_vlan)]]
+        self.network_ip = slice_ip_list.pop((0))
+        self.broadcast = slice_ip_list.pop(-1)
+        self.gw = slice_ip_list.pop(0)
         vlan_wrapped = {'vlan_name': vlan_name,
                         'network_ip': self.network_ip,
                         'broadcast_ip': self.broadcast,
                         'gateway_ip': self.gw,
-                        'end_devices_ip': self.ip_list,
-                        'subnet': self.subnet,
-                        'mask': self.mask_subnet}
+                        'end_devices_ip': slice_ip_list ,
+                        'subnet': self.subnet_scope,
+                        'mask': self.mask_scope}
+
+        for _ in range(0, len(slice_ip_list) +3):
+            self.ip_list.pop(0)
         print(vlan_wrapped)
 
+subject = Network(1)
+subject.vlan_go('manager', 1)
 
-        print(vlan_name)
-        print(comp_in_vlan)
-        for _ in self.ip_list:
-            print(f'The ip that for end devices are :  {_}')
-
-
-
-subject = Network(50)
-subject.vlan_go('manager', 2)
 
 def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
 
