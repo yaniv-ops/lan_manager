@@ -83,6 +83,26 @@ class Network:
             self.ip_list.pop(0)
         return vlan_wrapped
 
+    def switch(self, vlan_list):
+        vlans = []
+
+        for _ in vlan_list:
+            poped_ip = []
+            dict = {key: value for key, value in _.items()}
+            for _ in range(2):
+                listi = dict['end_devices_ip'].pop()
+                poped_ip.append(listi)
+            vlans_object = {'vlan_name': dict['vlan_name'],
+                            'vlan_ip_scope': poped_ip,
+                            'number_of_interfaces': '22',
+                            'level': 'access'}
+
+            vlans.append(vlans_object)
+            print(poped_ip)
+            print(dict['end_devices_ip'])
+            for x in vlans:
+                print(x)
+
 
 
 

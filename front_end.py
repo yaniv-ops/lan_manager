@@ -3,7 +3,7 @@
 
 from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label
 from PIL import ImageTk, Image
-from back_end import Router
+from back_end import Switch
 
 
 
