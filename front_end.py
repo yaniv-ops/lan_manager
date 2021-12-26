@@ -1,9 +1,9 @@
 
 #----------UI-SETUP--------------------#
 
-from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label
+from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label, OptionMenu, Entry
 from PIL import ImageTk, Image
-from back_end import Switch
+
 
 
 
@@ -33,54 +33,88 @@ def button_on(vlan):
 
 def router_on(router):
 
-    router_a = Router('ospf','hsrp','web', '127.0.0.1')
-    router_list.append(router_a)
-    router.config(bg="black", command=lambda: router_off(router_a, router))
-    a = router_a.cal_interface(3)
-    print(a)
+    router.config(bg='black', command=lambda: router_off(router))
 
-
-def router_off(router_a, router):
+def router_off(router):
 
     router.config(bg='white', command=lambda: router_on(router))
-    router_list.remove(router_a)
+
+
+
 
 
 def switch_on(switch):
-    print(switch)
-    switch_a = Router('ospf', 'hsrp')
-    if switch == btn_switch_a or switch == btn_switch_b:
-        core_list.append(switch_a)
-        print(f' core_list: {core_list}')
-    elif switch == btn_switch_c or switch == btn_switch_d:
-        dis_list.append(switch_a)
-        print(f' distro list: {dis_list}')
-    elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
-        access_list.append(switch_a)
-        print(f'access_list: {access_list}')
-    else:
-        comp_list.append(switch_a)
-        print(comp_list)
+    def take_values():
+        for widget in window_test_frame.winfo_children():
+            widget.destroy()
+        window_test_frame.pack()
+        for _ in range(clicked.get()):
 
+            label_department_number = Label(window_test_frame,text=f"department no. {_ +1}")
+            label_department_number.pack(pady=5)
+            item_button = Label(window_test_frame, text="Name of department?")
+            item_button.pack(padx=10, pady=5)
+            item_entry = Entry(window_test_frame)
+            item_entry.pack()
+            number_in_vlan = Label(window_test_frame, text="How many computers?")
+            number_in_vlan.pack(padx=10, pady=5)
+            number_in_vlan_entry = Entry(window_test_frame)
+            number_in_vlan_entry.pack(pady=5)
+        submit_button = Button(window_test_frame, text='Submit')
+        submit_button.pack()
+
+    window_test = Tk()
+    window_test.config(bg='#E6DDC4')
+    window_test.title('LAN Manager')
+    window_test.iconbitmap('favicon.png')
+    window_test.geometry("400x800")
+
+    item_button = Label(window_test, text="How many department connecting to that switch?")
+    item_button.pack()
+    clicked = IntVar(window_test)
+    clicked.set(1)
+
+    drop = OptionMenu(window_test, clicked, 1, 2, 3, 4)
+    drop.pack(padx = 3)
+    pick_button = Button(window_test, text='Enter', command=take_values)
+    pick_button.pack()
+
+    window_test_frame = LabelFrame(window_test, text="Configure switch")
+
+
+
+    # if switch == btn_switch_a or switch == btn_switch_b:
+    #     core_list.append(switch)
+    #     print(f' core_list: {core_list}')
+    # elif switch == btn_switch_c or switch == btn_switch_d:
+    #     dis_list.append(switch)
+    #     print(f' distro list: {dis_list}')
+    # elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
+    #     access_list.append(switch)
+    #     print(f'access_list: {access_list}')
+    # else:
+    #     comp_list.append(switch)
+    #     print(comp_list)
 
     switch.config(bg="black", command=lambda: switch_off(switch_a, switch))
 
+    window_test.mainloop()
 
 
 def switch_off(switch_a, switch):
 
     switch.config(bg='white', command=lambda: switch_on(switch))
     if switch == btn_switch_a or switch == btn_switch_b:
-        core_list.remove(switch_a)
+        core_list.remove(switch)
         print(f' core_list: {core_list}')
     elif switch == btn_switch_c or switch == btn_switch_d:
-        dis_list.remove(switch_a)
+        dis_list.remove(switch)
         print(f' distro list: {dis_list}')
     elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
-        access_list.remove(switch_a)
+        access_list.remove(switch)
         print(f'access_list: {access_list}')
     else:
-        comp_list.remove(switch_a)
+        comp_list.remove(switch)
 
 
 window= Tk()
