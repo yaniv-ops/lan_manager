@@ -3,10 +3,8 @@ import numpy as np
 
 class Network:
 
-    def __init__(self, number, vlan=1):
+    def __init__(self, number):
         self.ip_list = []
-        self.vlan = vlan
-        self.number = number + 6
         self.array = np.arange(0,256)
         number_of_bits  = self.calculate_bits(number)
         self.calculate_ip_scope(number_of_bits)
@@ -63,7 +61,7 @@ class Network:
 
 
     def vlan_go(self, vlan_name, comp_in_vlan):
-        vlans = []
+
         comp_in_vlan = comp_in_vlan + 3
         number_bits = self.calculate_bits(int(comp_in_vlan))
         self.calculate_ip_scope(number_bits)

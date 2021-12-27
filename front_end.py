@@ -3,8 +3,7 @@
 
 from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label, OptionMenu, Entry
 from PIL import ImageTk, Image
-
-
+from back_end import calculate_network, print_scripts
 
 
 ### attributes ###
@@ -19,6 +18,8 @@ access_list = []
 comp_list = []
 
 ### FUNCTION ###
+
+
 
 def button_on(vlan):
     global is_on
@@ -49,12 +50,17 @@ def switch_on(switch):
     def take_values():
 
         dept = []
+
         comp = []
 
         def submited():
             for item in dept:
                 print(item.get())
+            global res
+            res = {dept[i].get(): comp[i].get() for i in range(len(dept))}
+            print(res)
             window_test_frame.forget()
+
 
 
         for widget in window_test_frame.winfo_children():
@@ -236,7 +242,7 @@ deploy_frame = LabelFrame(window, text='Deploy menu', padx=5, pady=5)
 deploy_canvas = Canvas(deploy_frame, width=70, height=150)
 deploy_frame.grid(row=1, column=3, padx=5, pady=5)
 deploy_canvas.pack(padx=5, pady=5)
-print_button = Button(deploy_canvas, text="Print scripts", command='')
+print_button = Button(deploy_canvas, text="Print scripts", command=lambda :print_scripts(22))
 print_button.pack(padx=5, pady=5)
 deploy_button = Button(deploy_canvas, text="Deploy net  work", command='')
 deploy_button.pack()
