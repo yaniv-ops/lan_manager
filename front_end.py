@@ -44,7 +44,19 @@ def router_off(router):
 
 
 def switch_on(switch):
+
+
     def take_values():
+
+        dept = []
+        comp = []
+
+        def submited():
+            for item in dept:
+                print(item.get())
+            window_test_frame.forget()
+
+
         for widget in window_test_frame.winfo_children():
             widget.destroy()
         window_test_frame.pack()
@@ -60,7 +72,9 @@ def switch_on(switch):
             number_in_vlan.pack(padx=10, pady=5)
             number_in_vlan_entry = Entry(window_test_frame)
             number_in_vlan_entry.pack(pady=5)
-        submit_button = Button(window_test_frame, text='Submit')
+            dept.append(item_entry)
+            comp.append(number_in_vlan_entry)
+        submit_button = Button(window_test_frame, text='Submit', command=submited)
         submit_button.pack()
 
     window_test = Tk()
