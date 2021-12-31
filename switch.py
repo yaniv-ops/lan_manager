@@ -1,22 +1,46 @@
 from tkinter import *
 
-class Switch:
 
-    def __init__(self, button):
+
+
+class Switch:
+    global core_list
+    core_list = []
+    global dis_list
+    dis_list = []
+    global access_list
+    access_list = []
+    global comp_list
+    comp_list = []
+
+    def __init__(self, button, level):
+
+        self.dept = []
+        self.comp = []
+        self.level = level
         def switch_turn_off():
-            self.button.config(bg='white', command=lambda: Switch(self.button))
+            self.button.config(bg='white', command=lambda: Switch(self.button, self.level))
         self.button = button
         self.button.config(bg='black', command=switch_turn_off)
         Switch.take_values(self)
+        print(self.level)
 
     def take_values(self):
 
         def get_values():
+
+            def submited():
+                print(self.button)
+                for item in self.dept:
+                    print(item.get())
+                res = {self.dept[i].get(): self.comp[i].get() for i in range(len(self.dept))}
+                switch_dict = {switch_name_entry.get(): res}
+                print(switch_dict)
+                self.window_test_frame.forget()
+
+
             for widget in self.window_test_frame.winfo_children():
                 widget.destroy()
-
-            dept = []
-            comp = []
 
             switch_name = Label(self.window_test_frame, text='Name the switch:')
             switch_name.pack()
@@ -33,9 +57,9 @@ class Switch:
                 number_in_vlan.pack(padx=10, pady=5)
                 number_in_vlan_entry = Entry(self.window_test_frame)
                 number_in_vlan_entry.pack(pady=5)
-                dept.append(item_entry)
-                comp.append(number_in_vlan_entry)
-            submit_button = Button(self.window_test_frame, text='Submit', command='')
+                self.dept.append(item_entry)
+                self.comp.append(number_in_vlan_entry)
+            submit_button = Button(self.window_test_frame, text='Submit', command=submited)
             submit_button.pack()
 
         self.window_test = Tk()

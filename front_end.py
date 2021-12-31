@@ -4,7 +4,7 @@
 from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label, OptionMenu, Entry
 from PIL import ImageTk, Image
 from back_end import calculate_network, print_scripts
-from testim import Switch
+from switch import Switch
 
 
 window= Tk()
@@ -30,36 +30,36 @@ btn_router_a.grid(row=0, column=2,padx=10, pady=20)
 btn_router_b = Button(virtual_canvas, width=40, height=40, image=router_img3, command=lambda :router_on(btn_router_b))
 btn_router_b.grid(row=0, column=3, padx=10, pady=20)
 switch_img2 = ImageTk.PhotoImage(Image.open('switch.png').resize((50, 50)))
-btn_switch_a = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Test(btn_switch_a))
+btn_switch_a = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_a, level='access'))
 btn_switch_a.grid(row=1, column=2,padx=10, pady=20)
-btn_switch_b = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Test(btn_switch_b))
+btn_switch_b = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_b, level='access'))
 btn_switch_b.grid(row=1, column=3,padx=10, pady=20)
-btn_switch_c = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_c))
+btn_switch_c = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_c, level='access'))
 btn_switch_c.grid(row=2, column=2,padx=10, pady=20)
-btn_switch_d = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_d))
+btn_switch_d = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_d, level='access'))
 btn_switch_d.grid(row=2, column=3,padx=10, pady=20)
 
-btn_switch_e = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_e))
+btn_switch_e = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_e, level='access'))
 btn_switch_e.grid(row=3, column=1,padx=10, pady=20)
 
-btn_switch_f = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Test(btn_switch_f))
+btn_switch_f = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_f, level='access'))
 btn_switch_f.grid(row=3, column=2,padx=10, pady=20)
-btn_switch_g = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Test(btn_switch_g))
+btn_switch_g = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_g, level='access'))
 btn_switch_g.grid(row=3, column=3,padx=10, pady=20)
-btn_switch_h = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Test(btn_switch_h))
+btn_switch_h = Button(virtual_canvas, width=40, height=40, image=switch_img2, command=lambda :Switch(btn_switch_h, level='access'))
 btn_switch_h.grid(row=3, column=4,padx=10, pady=20)
 
 comp_img2 = ImageTk.PhotoImage(Image.open('comp.png').resize((50, 50)))
-comp_a = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Test(comp_a))
+comp_a = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Switch(comp_a, level='access'))
 comp_a.grid(row=4, column=1,padx=10, pady=20)
 
-comp_b = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Test(comp_b))
+comp_b = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Switch(comp_b, level='access'))
 comp_b.grid(row=4, column=2,padx=10, pady=20)
 
-comp_c = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Test(comp_c))
+comp_c = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Switch(comp_c, level='access'))
 comp_c.grid(row=4, column=3,padx=10, pady=20)
 
-comp_d = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Test(comp_d))
+comp_d = Button(virtual_canvas, width=40, height=40, image=comp_img2, command=lambda :Switch(comp_d, level='access' ))
 comp_d.grid(row=4, column=4,padx=10, pady=20)
 
 # make the icons bar
