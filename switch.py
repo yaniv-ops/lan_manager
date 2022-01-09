@@ -29,7 +29,12 @@ class Switch:
                             'switch_details': res}
 
         for item in self.switch_dict['switch_details']:
-            print(self.switch_dict['switch_details'][item])
+            if item not in total_vlans:
+                total_vlans[item] = int(self.switch_dict['switch_details'][item])
+                print(self.switch_dict['switch_details'][item])
+            else:
+                total_vlans[item] += int(self.switch_dict['switch_details'][item])
+                print(total_vlans[item])
 
     def get_values(self):
 
