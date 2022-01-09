@@ -2,7 +2,10 @@ from tkinter import *
 
 global counter
 counter = 0
-
+global total_comp
+total_comp = 0
+global total_vlans
+total_vlans = {}
 
 class Switch:
 
@@ -25,8 +28,8 @@ class Switch:
                             'switch_name': self.switch_name_entry.get(),
                             'switch_details': res}
 
-        print(self.switch_dict)
-        self.window_test_frame.forget()
+        for item in self.switch_dict['switch_details']:
+            print(self.switch_dict['switch_details'][item])
 
     def get_values(self):
 
