@@ -1,7 +1,7 @@
 from tkinter import *
+from calculation import Network
 
-global counter
-counter = 0
+
 global total_comp
 total_comp = 0
 global total_vlans
@@ -22,6 +22,7 @@ class Switch:
         self.button.config(bg='white', command=lambda: Switch(self.button, self.level))
 
     def submited(self):
+        global total_comp, total_vlans
 
         res = {self.dept[i].get(): self.comp[i].get() for i in range(len(self.dept))}
         self.switch_dict = {'switch_level': self.level,
@@ -29,12 +30,15 @@ class Switch:
                             'switch_details': res}
 
         for item in self.switch_dict['switch_details']:
+            total_comp += int(self.switch_dict['switch_details'][item])
+            print(total_comp)
             if item not in total_vlans:
                 total_vlans[item] = int(self.switch_dict['switch_details'][item])
                 print(self.switch_dict['switch_details'][item])
             else:
                 total_vlans[item] += int(self.switch_dict['switch_details'][item])
                 print(total_vlans[item])
+            print(total_vlans, total_comp)
 
     def get_values(self):
 
@@ -82,9 +86,20 @@ class Switch:
         self.window_test_frame = LabelFrame(self.window_test, text="Configure switch")
         self.window_test_frame.pack()
 
+    def print(self):
+        global total_comp, total_vlans
+        scripts_list = []
+        network = Network(total_comp)
+        for item in total_vlans:
+            print(item)
+            print(total_vlans[item])
+            returnvalue = network.vlan_go(item, total_vlans[item])
+            scripts_list.append(returnvalue)
+        return scripts_list
 
 
-
+    def finalize(self):
+        self.ip_numbers_for_end_device = ""
 
 
 

@@ -1,20 +1,21 @@
-from calculation import Network
 from switch import Switch
+from network import finalize_net
+
+switch_objects = []
 
 def push_button(button, level):
+    global one
     one = Switch(button, level)
-    print(one)
+    switch_objects.append(one)
+    print(switch_objects)
+    print(f'one {one}')
 
-def numbers(some_dict):
-    print(some_dict)
+def print_scripts():
+    return_list = one.print()
+    print(return_list)
+    network = finalize_net(return_list, switch_objects)
+    print(network.vlan_list)
 
-
-def calculate_network():
-    network_a = Network(30)
-    global returnvalue
-    returnvalue = network_a.vlan_go('mana', 20)
-    network_a.vlan_by_switch()
-    network_a.vlan_by_switch()
 
 
 

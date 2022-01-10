@@ -4,7 +4,7 @@
 from tkinter import Tk, LabelFrame, Canvas, IntVar, Radiobutton, Button, Label, OptionMenu, Entry
 from PIL import ImageTk, Image
 from switch import Switch
-from back_end import push_button
+from back_end import push_button, print_scripts
 
 
 window= Tk()
@@ -111,7 +111,7 @@ deploy_frame = LabelFrame(window, text='Deploy menu', padx=5, pady=5)
 deploy_canvas = Canvas(deploy_frame, width=70, height=150)
 deploy_frame.grid(row=1, column=3, padx=5, pady=5)
 deploy_canvas.pack(padx=5, pady=5)
-print_button = Button(deploy_canvas, text="Print scripts", command=lambda :print_scripts(22))
+print_button = Button(deploy_canvas, text="Print scripts", command=print_scripts)
 print_button.pack(padx=5, pady=5)
 deploy_button = Button(deploy_canvas, text="Deploy net  work", command='')
 deploy_button.pack()
