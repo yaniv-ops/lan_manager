@@ -15,6 +15,7 @@ class Switch:
         self.comp = []
         self.level = level
         self.button = button
+        self.switch_dict = {}
         self.button.config(bg='black', command=lambda :self.switch_turn_off())
         self.take_values()
 
@@ -97,9 +98,6 @@ class Switch:
             scripts_list.append(returnvalue)
         return scripts_list
 
-
-    def finalize(self):
-        self.ip_numbers_for_end_device = ""
 
 
 
