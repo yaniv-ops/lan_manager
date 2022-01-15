@@ -6,7 +6,7 @@ class Network:
     def __init__(self, number):
         self.ip_list = []
         self.array = np.arange(0,256)
-        number_of_bits  = self.calculate_bits(number)
+        number_of_bits  = self.calculate_bits(number+3)
         self.calculate_ip_scope(number_of_bits)
         self.ip_numbers()
 
