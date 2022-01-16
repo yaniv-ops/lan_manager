@@ -31,7 +31,7 @@ class Switch:
                             'switch_details': res}
 
         for item in self.switch_dict['switch_details']:
-            total_comp += int(self.switch_dict['switch_details'][item])
+            total_comp += int(self.switch_dict['switch_details'][item]) +3
             print(total_comp)
             if item not in total_vlans:
                 total_vlans[item] = int(self.switch_dict['switch_details'][item])

@@ -81,64 +81,12 @@ class Network:
             self.ip_list.pop(0)
         return vlan_wrapped
 
-    def vlan_by_switch(self):
-
-        print(returnvalue['subnet'])
-        ip_list = returnvalue['end_devices_ip']
-        print(ip_list)
-        for _ in range(3):
-            ip_list.pop()
-        print(ip_list)
-        returnvalue['end_devices_ip'] = ip_list
-        print(returnvalue)
-
-    def switch(self, vlan_list, level):
-        vlans = []
-
-        for _ in vlan_list:
-            poped_ip = []
-            dict = {key: value for key, value in _.items()}
-            for _ in range(2):
-                listi = dict['end_devices_ip'].pop()
-                poped_ip.append(listi)
-            vlans_object = {'vlan_name': dict['vlan_name'],
-                            'vlan_ip_scope': poped_ip,
-                            'number_of_interfaces': len(poped_ip),
-                            'level': level}
-
-            vlans.append(vlans_object)
-            print(poped_ip)
-            print(dict['end_devices_ip'])
-            for x in vlans:
-                print(x)
-
-
-
-def calculate_net(given_list):
-    print(given_list)
 
 
 
 
 
-def calculate_interfaces(comp_sum, dist_sum, core_sum, router_sum):
-
-    router_to_router = 0
-    router_to_core = 2
-
-    if router_sum == 2:
-        router_to_router = 4
-    if core_sum == 2 or core_sum == 0 and dist_sum == 2:
-        router_to_core = 4
-
-    total_ip_int = round(float((comp_sum + router_to_core + router_to_router)) * 1.5)
-    return total_ip_int
 
 
 
-# network_a = Network(30)
-# global returnvalue
-# returnvalue = network_a.vlan_go('mana', 20)
-# network_a.vlan_by_switch()
-# network_a.vlan_by_switch()
-# calculate_net(returnvalue)
+
