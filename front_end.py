@@ -160,45 +160,6 @@ def router_off(router):
 
     router.config(bg='white', command=lambda: router_on(router))
 
-def switch_on(switch):
-
-        def submited():
-            for item in dept:
-                print(item.get())
-            res = {dept[i].get(): comp[i].get() for i in range(len(dept))}
-            switch_dict = {switch_name_entry.get(): res}
-            print(switch_dict)
-            window_test_frame.forget()
-            if switch == btn_switch_a or switch == btn_switch_b:
-                core_list.append(switch_dict)
-                print(f' core_list: {core_list}')
-            elif switch == btn_switch_c or switch == btn_switch_d:
-                dis_list.append(switch_dict)
-                print(f' distro list: {dis_list}')
-            elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
-                access_list.append(switch_dict)
-                print(f'access_list: {access_list}')
-                #checksum
-                for key in access_list:
-                    print(key)
-            else:
-               comp_list.append(switch)
-               print(comp_list)
-
-def switch_off(switch):
-
-    switch.config(bg='white', command=lambda: switch_on(switch))
-    if switch == btn_switch_a or switch == btn_switch_b:
-        core_list.remove(switch_dict)
-        print(f' core_list: {core_list}')
-    elif switch == btn_switch_c or switch == btn_switch_d:
-        dis_list.remove(switch_dict)
-        print(f' distro list: {dis_list}')
-    elif switch == btn_switch_e or switch == btn_switch_f or switch == btn_switch_g or switch == btn_switch_h:
-        access_list.remove(switch_dict)
-        print(f'access_list: {access_list}')
-    else:
-        comp_list.remove(switch_dict)
 
 
 
