@@ -1,13 +1,14 @@
 from tkinter import *
 from calculation import Network
 
-
 global total_comp
 total_comp = 0
 global total_vlans
 total_vlans = {}
 
+
 class Switch:
+
 
     def __init__(self, button, level):
 
@@ -16,11 +17,12 @@ class Switch:
         self.level = level
         self.button = button
         self.switch_dict = {}
-        self.button.config(bg='black', command=lambda :self.switch_turn_off())
+        self.button.config(bg='black', command=lambda :self.switch_turn_off(button, level))
         self.take_values()
 
-    def switch_turn_off(self):
-        self.button.config(bg='white', command=lambda: Switch(self.button, self.level))
+    def switch_turn_off(self, button, level):
+        self.button.config(bg='white', command=lambda: Switch(button, level))
+        self.window_test.destroy()
 
     def submited(self):
         global total_comp, total_vlans
@@ -32,14 +34,11 @@ class Switch:
 
         for item in self.switch_dict['switch_details']:
             total_comp += int(self.switch_dict['switch_details'][item]) +3
-            print(total_comp)
             if item not in total_vlans:
                 total_vlans[item] = int(self.switch_dict['switch_details'][item])
-                print(self.switch_dict['switch_details'][item])
             else:
                 total_vlans[item] += int(self.switch_dict['switch_details'][item])
-                print(total_vlans[item])
-            print(total_vlans, total_comp)
+
 
     def get_values(self):
 
@@ -92,8 +91,6 @@ class Switch:
         scripts_list = []
         network = Network(total_comp)
         for item in total_vlans:
-            print(item)
-            print(total_vlans[item])
             returnvalue = network.vlan_go(item, total_vlans[item])
             scripts_list.append(returnvalue)
         return scripts_list
